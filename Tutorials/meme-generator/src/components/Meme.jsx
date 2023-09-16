@@ -8,12 +8,12 @@
 
 export default function Meme() {
   return (
-    <form action="" className="form">
-      <div className="form--row">
-        <input type="text" placeholder="Shut up" />
-        <input type="text" placeholder="and take my money" />
-      </div>
-      <input type="submit" value="Get a new meme image 🖼" />
-    </form>
+    <main>
+      <form className="form">
+        <input type="text" placeholder="Top text" className="form--input" />
+        <input type="text" placeholder="Bottom text" className="form--input" />
+        <button className="form--button">Get a new meme image 🖼</button>
+      </form>
+    </main>
   );
 }
