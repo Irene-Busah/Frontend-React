@@ -1,19 +1,24 @@
-/**
- * Challenge:
- * - Create a Meme component.
- * - Inside the Meme component, render a styled form
- *   with our 2 inputs and the button.
- * - Don't worry about adding any functionality yet
- */
+import memesData from "../../memesData";
+import React from "react";
 
 export default function Meme() {
+  const [memeImage, setMemeImage] = React.useState("");
+  function getRandomImageUrl() {
+    const memes = memesData.data.memes;
+    const randomIndex = Math.floor(Math.random() * memes.length);
+    const randomImage = memes[randomIndex];
+    setMemeImage(randomImage.url);
+  }
   return (
     <main>
-      <form className="form">
+      <div className="form">
         <input type="text" placeholder="Top text" className="form--input" />
         <input type="text" placeholder="Bottom text" className="form--input" />
-        <button className="form--button">Get a new meme image 🖼</button>
-      </form>
+        <button className="form--button" onClick={getRandomImageUrl}>
+          Get a new meme image 🖼
+        </button>
+      </div>
+      <img src={memeImage} alt="Meme" />
     </main>
   );
 }
