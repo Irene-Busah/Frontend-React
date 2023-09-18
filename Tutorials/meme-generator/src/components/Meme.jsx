@@ -1,13 +1,25 @@
+/* eslint-disable no-unused-vars */
 import memesData from "../../memesData";
 import React from "react";
 
 export default function Meme() {
-  const [memeImage, setMemeImage] = React.useState("");
+  const [memeImage, setMemeImage] = React.useState({
+    topText: "",
+    bottomText: "",
+    randomImage: "http://i.imgflip.com/1bij.jpg",
+  });
+
+  const [memeData, setMemeData] = React.useState(memesData);
+
   function getRandomImageUrl() {
-    const memes = memesData.data.memes;
+    const memes = memeData.data.memes;
     const randomIndex = Math.floor(Math.random() * memes.length);
     const randomImage = memes[randomIndex];
-    setMemeImage(randomImage.url);
+    const url = randomImage.url;
+    setMemeImage((prevMeme) => ({
+      ...prevMeme,
+      randomImage: url,
+    }));
   }
   return (
     <main>
@@ -18,7 +30,7 @@ export default function Meme() {
           Get a new meme image 🖼
         </button>
       </div>
-      <img src={memeImage} alt="Meme" />
+      <img src={memeImage.randomImage} alt="Meme" />
     </main>
   );
 }
